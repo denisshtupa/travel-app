@@ -1,28 +1,34 @@
 
-import React, { createContext, useState, FC } from 'react';
-import { ITravel } from '../interface/GeneralInterfaces';
+import React, { createContext, useReducer, FC } from 'react';
+import AppReducer from './AppReducer';
 import { travels } from './constants';
-import { TravelContextState } from './types';
+import { TravelListEnum } from './types';
 
 
-const contextDefaultValues: TravelContextState = {
+const contextDefaultValues: any = {
     travels: travels,
-    markAsDone: () => {}
+    travelsToShow: TravelListEnum.all
 }
 
 // Create travel context
-export const TravelContext = createContext<TravelContextState>(contextDefaultValues);
+export const TravelContext = createContext(contextDefaultValues);
 
 // Provider component 
 const TravelProvider: FC = ({ children }) => {
-    const [travels, setTravels] = useState<ITravel[]>(contextDefaultValues.travels);
+    const [state, dispatch] = useReducer(AppReducer, contextDefaultValues);
 
-    const markAsDone = (newTravel: ITravel) => {
-        setTravels((travels) => [...travels, newTravel])
+    //Actions
+    function changeTravelType(travelType: TravelListEnum) {
+        dispatch({
+            type: 'TRAVEL_TYPE',
+            travelType: travelType
+        });
     }
 
     return(<TravelContext.Provider value={{
-        travels, markAsDone
+        travels: state.travels,
+        travelsToShow: state.travelsToShow,
+        changeTravelType
     }}>
         {children}
     </TravelContext.Provider>)

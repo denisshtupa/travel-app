@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { TravelContext } from '../context/GlobalState';
+import { ITravel } from '../interface/GeneralInterfaces';
 import { Travel } from './Travel';
 
 
@@ -9,8 +10,7 @@ export const TravelsList = () => {
 
     return(
        <>
-            {travels.map(t => (<Travel travel={t} key={t.idKey} />))}
-
+            {travels.map((t:ITravel) => (<Travel travel={t} key={t.idKey} />))}
        </>
     )
 }
