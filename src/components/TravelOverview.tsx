@@ -19,6 +19,7 @@ export const TravelOverview = () => {
                     <th>Name</th>
                     <th>City</th>
                     <th>Country</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>

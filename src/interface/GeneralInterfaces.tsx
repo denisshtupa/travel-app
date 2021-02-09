@@ -5,3 +5,4 @@ export interface ITravel {
     country: string,
     isDone: boolean    // true if travel is done, false if it is a planned travel
 }
+

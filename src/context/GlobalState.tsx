@@ -1,5 +1,6 @@
 
 import React, { createContext, useReducer, FC } from 'react';
+import { ITravel } from '../interface/GeneralInterfaces';
 import AppReducer from './AppReducer';
 import { travels } from './constants';
 import { TravelListEnum } from './types';
@@ -25,10 +26,28 @@ const TravelProvider: FC = ({ children }) => {
         });
     }
 
+    function markTravelAsDone(travel: ITravel) {
+        dispatch({
+            type: 'TRAVEL_DONE',
+            travel: travel
+        })
+    }
+
+    function markTravelAsPlanned(travel: ITravel) {
+        dispatch({
+            type: 'TRAVEL_PLANNED',
+            travel: travel
+        })
+    }
+
+    // end of Actions
+
     return(<TravelContext.Provider value={{
         travels: state.travels,
         travelsToShow: state.travelsToShow,
-        changeTravelType
+        changeTravelType,
+        markTravelAsDone,
+        markTravelAsPlanned
     }}>
         {children}
     </TravelContext.Provider>)

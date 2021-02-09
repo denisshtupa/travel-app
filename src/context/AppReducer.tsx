@@ -1,4 +1,3 @@
-import { constants } from "zlib";
 import { ITravel } from "../interface/GeneralInterfaces";
 import { travels } from "./constants";
 import { TravelListEnum } from "./types";
@@ -18,6 +17,20 @@ export default (state: any, action: any) => {
             return {
                 ...state,
                 travels: filtered
+            }
+
+        case 'TRAVEL_DONE':
+            state.travels.find((tr: ITravel) => tr.idKey === action.travel.idKey).isDone = true;
+            return {
+                ...state,
+                travels: [...state.travels]
+            }
+
+        case 'TRAVEL_PLANNED':
+            state.travels.find((tr: ITravel) => tr.idKey === action.travel.idKey).isDone = false;
+            return {
+                ...state,
+                travels: [...state.travels]
             }
             
         default: 

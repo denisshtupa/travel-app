@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap';
 import { TravelContext } from "../context/GlobalState";
 import { TravelListEnum } from "../context/types";
 
-
 export const TopButtons = () => {
     const {changeTravelType} = useContext(TravelContext);
 
