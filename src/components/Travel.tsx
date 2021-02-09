@@ -15,8 +15,8 @@ export const Travel = ({travel}: any) => {
                 <td>{travel.city}</td>
                 <td>{travel.country}</td>
                 {travel.isDone ? 
-                    (<Button variant="info" onClick={() => markTravelAsPlanned(travel)}>Mark as planned</Button>) : 
-                    (<Button variant="success" onClick={() => markTravelAsDone(travel)}>Mark as done</Button>)}
+                    (<td><Button variant="info" onClick={() => markTravelAsPlanned(travel)}>Mark as planned</Button></td>) : 
+                    (<td><Button variant="success" onClick={() => markTravelAsDone(travel)}>Mark as done</Button></td>)}
             </tr>
        </>
     )
